@@ -1,0 +1,20 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "HelloWorld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint *.ts",
+    "dev:watch": "nodemon -e ts --exec npm run lint"
+  },
+  "author": "chacs",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.0.2",
+    "fs": "0.0.1-security",
+    "nodemon": "^1.19.1",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  }
+}
