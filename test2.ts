@@ -1,11 +1,26 @@
-// Declaring a class with static members
-class Test {
-    static message = "Hello";
-    displayMessage(name: string){
-        console.log(Test.message + ' ' + name);
+// declaring our class
+class Greeter {
+    static standardGreeting = "Hello, there";
+    greeting: string;
+    greet(){
+        if(this.greeting){
+            return "Hello, " + this.greeting;
+        }
+        else {
+            return Greeter.standardGreeting;
+        }
     }
 }
 
-let test = new Test();
+let greeter1: Greeter;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
 
-test.displayMessage('Anton');
+let greeterMaker: typeof Greeter = Greeter;
+greeterMaker.standardGreeting = "Hey there!";
+
+let greeter2: Greeter = new greeterMaker();
+console.log(greeter2.greet());
+
+
+

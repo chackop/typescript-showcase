@@ -1,28 +1,38 @@
-// defining a passcode
-let passcode = "secret passcode 2";
+// Declaring an abstract class
+abstract class Department {
 
-// declaring a class
-class Employee {
-    private _fullName: string;
+    constructor(public name: string) {
 
-    get fullName(): string {
-        return this._fullName;
     }
 
-    set fullName(newName: string) {
-        if(passcode && passcode == "secret passcode"){
-            this._fullName = newName;
-        }
-        else {
-            console.log("Error: Unauthorized update!");
-        }
+    printName(): void {
+        console.log("Department name: " + this.name);
+    }
+
+    abstract printMeeting(): void; // must be implemented in derived classes
+}
+
+// creating a sub class based on abstract class
+class AccountingDepartment extends Department {
+
+    constructor() {
+        super("Accounting and Auditing");// constructors in derived classes must call super()
+    }
+
+    printMeeting(): void {
+        console.log("The accounting department meets each Monday");
+    }
+
+    generateReports(): void {
+        console.log("Generating reports...");
     }
 }
 
-let employee = new Employee();
-employee.fullName = "Bob Smith";
-
-if (employee.fullName){
-    console.log(employee.fullName);
-}
+// observing behaviour of our classes
+let department: AccountingDepartment; // ok to create a reference to an abstract type
+// department = new Department(); // error: cannot create an instance of an abstract class
+department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
+department.printName();
+department.printMeeting();
+department.generateReports(); // error: method does not exist on declared abstract type
 
