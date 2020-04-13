@@ -1,26 +1,18 @@
-// declaring our class
-class Greeter {
-    static standardGreeting = "Hello, there";
-    greeting: string;
-    greet(){
-        if(this.greeting){
-            return "Hello, " + this.greeting;
-        }
-        else {
-            return Greeter.standardGreeting;
-        }
-    }
+// declaring interfaces
+interface Shape {
+    color: string;
 }
 
-let greeter1: Greeter;
-greeter1 = new Greeter();
-console.log(greeter1.greet());
+interface Stroke {
+    width: number;
+}
 
-let greeterMaker: typeof Greeter = Greeter;
-greeterMaker.standardGreeting = "Hey there!";
+// extending multiple interfaces
+interface Square extends Shape, Stroke {
+    sideLength: number;
+}
 
-let greeter2: Greeter = new greeterMaker();
-console.log(greeter2.greet());
-
-
-
+let square = <Square>{};
+square.color = "blue";
+square.sideLength = 10;
+square.width = 5.0;

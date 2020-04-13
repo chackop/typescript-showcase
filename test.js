@@ -1,44 +1,30 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
+// managing a constructor function.
+// this signature of accepting a constructor and returning an instance of.
+// WatchInterface will allow us to use it with both
+// DigitalWatch and AnalogWatch classes.
+function createWatch(ctor, hour, minute) {
+    return new ctor(hour, minute);
+}
+// declaring classes
+var DigitalWatch = /** @class */ (function () {
+    function DigitalWatch(h, m) {
+    }
+    DigitalWatch.prototype.tick = function () {
+        console.log("beep beep");
     };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    return DigitalWatch;
+}());
+var AnalogWatch = /** @class */ (function () {
+    function AnalogWatch(h, m) {
+    }
+    AnalogWatch.prototype.tick = function () {
+        console.log("tick tock");
     };
-})();
-// declaring the main class
-var Control = /** @class */ (function () {
-    function Control() {
-    }
-    return Control;
+    return AnalogWatch;
 }());
-// extending one class into another and implementing
-// the interface binding
-var Button = /** @class */ (function (_super) {
-    __extends(Button, _super);
-    function Button() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Button.prototype.select = function () { };
-    return Button;
-}(Control));
-var TextBox = /** @class */ (function (_super) {
-    __extends(TextBox, _super);
-    function TextBox() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    TextBox.prototype.select = function () { };
-    return TextBox;
-}(Control));
-// Error: Property is missing
-var Image = /** @class */ (function () {
-    function Image() {
-    }
-    Image.prototype.select = function () { };
-    return Image;
-}());
+// instantiating classes
+var digital = createWatch(DigitalWatch, 12, 17);
+var analog = createWatch(AnalogWatch, 7, 32);
+// executing class functions
+digital.tick();
+analog.tick();

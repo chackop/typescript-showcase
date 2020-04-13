@@ -1,25 +1,40 @@
-// declaring the main class
-class Control {
-    private state: any;
+// specifying interfaces
+interface WatchConstructor{
+    new (hour: number, minute: number): WatchInterface;
+}
+interface WatchInterface {
+    tick(): void;
 }
 
-// extending the class into interface
-interface SelectableControl extends Control {
-    select(): void;
+// managing a constructor function.
+// this signature of accepting a constructor and returning an instance of.
+// WatchInterface will allow us to use it with both
+// DigitalWatch and AnalogWatch classes.
+
+function createWatch(ctor: WatchConstructor, hour: number, minute: number): WatchInterface{
+    return new ctor(hour, minute);
 }
 
-// extending one class into another and implementing
-// the interface binding
-class Button extends Control implements SelectableControl {
-    select() { }
+// declaring classes
+class DigitalWatch implements WatchInterface {
+    constructor(h: number, m: number) {}
+    tick() {
+        console.log("beep beep");
+    }
+}
+class AnalogWatch implements WatchInterface {
+    constructor(h: number, m: number){
+
+    }
+    tick() {
+        console.log("tick tock");
+    }
 }
 
-class TextBox extends Control {
-    select() { }
-}
+// instantiating classes
+let digital = createWatch(DigitalWatch, 12, 17);
+let analog = createWatch(AnalogWatch, 7, 32);
 
-// Error: Property is missing
-class Image implements SelectableControl {
-    private state: any;
-    select() { }
-}
+// executing class functions
+digital.tick();
+analog.tick();
