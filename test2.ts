@@ -1,27 +1,11 @@
-// Declaring a class with protected members
-class Person {
-    protected name: string;
-    protected constructor(theName: string){
-        this.name = theName;
+// Declaring a class with static members
+class Test {
+    static message = "Hello";
+    displayMessage(name: string){
+        console.log(Test.message + ' ' + name);
     }
 }
 
-// Employee can extend Person
-class Employee extends Person {
-    private department: string;
+let test = new Test();
 
-    constructor(name: string, department: string) {
-        super(name);
-        this.department = department;
-    }
-
-    public getElevatorPitch() {
-        return `Hello, my name is ${this.name}
-        and I work in ${this.department}`;
-    }
-}
-
-let howard = new Employee("Howard", "Sales");
-
-let john = new Person("John"); // Error: protedted constructor.
-
+test.displayMessage('Anton');
