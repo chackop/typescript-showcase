@@ -11,34 +11,34 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-// Declaring an abstract class
-var Department = /** @class */ (function () {
-    function Department(name) {
-        this.name = name;
+// declaring the main class
+var Control = /** @class */ (function () {
+    function Control() {
     }
-    Department.prototype.printName = function () {
-        console.log("Department name: " + this.name);
-    };
-    return Department;
+    return Control;
 }());
-// creating a sub class based on abstract class
-var AccountingDepartment = /** @class */ (function (_super) {
-    __extends(AccountingDepartment, _super);
-    function AccountingDepartment() {
-        return _super.call(this, "Accounting and Auditing") || this;
+// extending one class into another and implementing
+// the interface binding
+var Button = /** @class */ (function (_super) {
+    __extends(Button, _super);
+    function Button() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    AccountingDepartment.prototype.printMeeting = function () {
-        console.log("The accounting department meets each Monday");
-    };
-    AccountingDepartment.prototype.generateReports = function () {
-        console.log("Generating reports...");
-    };
-    return AccountingDepartment;
-}(Department));
-// observing behaviour of our classes
-var department; // ok to create a reference to an abstract type
-// department = new Department(); // error: cannot create an instance of an abstract class
-department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
-department.printName();
-department.printMeeting();
-department.generateReports(); // error: method does not exist on declared abstract type
+    Button.prototype.select = function () { };
+    return Button;
+}(Control));
+var TextBox = /** @class */ (function (_super) {
+    __extends(TextBox, _super);
+    function TextBox() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TextBox.prototype.select = function () { };
+    return TextBox;
+}(Control));
+// Error: Property is missing
+var Image = /** @class */ (function () {
+    function Image() {
+    }
+    Image.prototype.select = function () { };
+    return Image;
+}());

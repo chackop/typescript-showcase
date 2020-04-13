@@ -1,38 +1,25 @@
-// Declaring an abstract class
-abstract class Department {
-
-    constructor(public name: string) {
-
-    }
-
-    printName(): void {
-        console.log("Department name: " + this.name);
-    }
-
-    abstract printMeeting(): void; // must be implemented in derived classes
+// declaring the main class
+class Control {
+    private state: any;
 }
 
-// creating a sub class based on abstract class
-class AccountingDepartment extends Department {
-
-    constructor() {
-        super("Accounting and Auditing");// constructors in derived classes must call super()
-    }
-
-    printMeeting(): void {
-        console.log("The accounting department meets each Monday");
-    }
-
-    generateReports(): void {
-        console.log("Generating reports...");
-    }
+// extending the class into interface
+interface SelectableControl extends Control {
+    select(): void;
 }
 
-// observing behaviour of our classes
-let department: AccountingDepartment; // ok to create a reference to an abstract type
-// department = new Department(); // error: cannot create an instance of an abstract class
-department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
-department.printName();
-department.printMeeting();
-department.generateReports(); // error: method does not exist on declared abstract type
+// extending one class into another and implementing
+// the interface binding
+class Button extends Control implements SelectableControl {
+    select() { }
+}
 
+class TextBox extends Control {
+    select() { }
+}
+
+// Error: Property is missing
+class Image implements SelectableControl {
+    private state: any;
+    select() { }
+}
